@@ -1,0 +1,18 @@
+{
+  "_comment": "Merge the deny rules below into ~/.claude/settings.local.json. They close the native Edit/Write path on prose folders so all prose writes must go through the MCP gate. Adjust the globs to match YOUR prose domains. Without these, the writing-preflight gate can be bypassed with a plain Edit.",
+
+  "permissions": {
+    "deny": [
+      "Edit(Teaching/**)",
+      "Write(Teaching/**)",
+      "Edit(Writing/**)",
+      "Write(Writing/**)",
+      "Edit(Admin/**)",
+      "Write(Admin/**)",
+      "Edit(meetings/**)",
+      "Write(meetings/**)",
+      "Edit(shared/**)",
+      "Write(shared/**)"
+    ]
+  }
+}

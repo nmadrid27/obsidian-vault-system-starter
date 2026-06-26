@@ -1,0 +1,22 @@
+# Secrets: never commit these
+config/api-keys.yaml
+*.key
+.claude_vault_key
+.claude_vault_cron_key
+.claude_vault_weekly_key
+
+# Rendered, machine-specific MCP registration (contains the owner key inline)
+vault/.mcp.json
+.mcp.json
+
+# Obsidian per-machine workspace state
+vault/.obsidian/workspace*
+vault/.obsidian/cache
+vault/.trash/
+
+# OS / tooling
+.DS_Store
+__pycache__/
+*.pyc
+.venv/
+venv/

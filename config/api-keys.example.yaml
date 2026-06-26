@@ -1,0 +1,50 @@
+# Server-side actor registry. Copy to your vault-system-mcp checkout as
+# config/api-keys.yaml, fill in real keys, and lock it down:
+#
+#   chmod 600 config/api-keys.yaml
+#
+# NEVER commit the real file. It holds secrets. This .example file is safe to
+# commit because every key here is a placeholder.
+#
+# setup.sh can generate the keys and render this for you.
+
+users:
+  # The owner. Full L3. No allowed_tools means the full level-3 range.
+  "<owner-username>":
+    key: "REPLACE_WITH_OWNER_KEY"
+    role: owner
+    authority_level: 3
+
+  # Daily cron actor. L2, gated by an explicit allowlist (the allowlist IS the
+  # grant). Keep this list to the tools the daily job actually needs.
+  vault-cron:
+    key: "REPLACE_WITH_CRON_KEY"
+    role: cron
+    authority_level: 2
+    allowed_tools:
+      - reconcile_state
+      - write_coordination_marker
+      - remove_coordination_marker
+      - resolve_marker
+      - append_to_file
+      - check_pending_markers
+      - check_marker_age
+      - check_entity_drift
+
+  # Weekly cron actor. L2, allowlist is a superset of the daily one.
+  vault-weekly:
+    key: "REPLACE_WITH_WEEKLY_KEY"
+    role: cron-weekly
+    authority_level: 2
+    allowed_tools:
+      - reconcile_state
+      - write_coordination_marker
+      - remove_coordination_marker
+      - resolve_marker
+      - append_to_file
+      - append_decision_log
+      - update_entity_context
+      - check_pending_markers
+      - check_marker_age
+      - check_entity_drift
+      - check_orphan_entities
